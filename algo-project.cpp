@@ -5,7 +5,8 @@ const int INF = 1e9;
 
 int main()
 {
-    cout<<"Enter the Your Course plan:"<<endl;
+    cout<<endl<<endl<<"             ---------------------WELCOME TO OUR COURSE PREREQUISITE PLANNER--------------------- "<<endl<<endl<<endl;
+    cout<<"Insert the Course plan"<<endl<<endl;
     cout<<"Enter the number of course: "<<endl;
     int n,k,cash,month;
     cin>>n;
@@ -19,11 +20,12 @@ int main()
         cin>>s1;
         cout<<"Enter the number of Courses its followed by: ";
         cin>>k;
-        cout<<"Enter the details of those Courses: ";
+        cout<<endl<<endl;
+        cout<<"Enter the details of those Courses: "<<endl;
         courses.insert(s1);
         for(int j=0; j<k; j++)
         {
-            cout<<"Enter the name of Course "<<j+1<<": ";
+            cout<<"Enter the name of next Course "<<j+1<<": ";
             cin>>s2;
             courses.insert(s2);
             cout<<"Enter the number of months the Course will take to complete: ";
@@ -32,6 +34,7 @@ int main()
             cin>>cash;
             mp[s1].push_back({{month,cash},s2});
             visited[s1]=false;
+            cout<<endl<<endl;
         }
     }
 
@@ -53,11 +56,11 @@ here:
         }
     }
 there:
-    cout<<"Enter the options: \n 1. See Next available courses. \n 2.Have a Fixed Course. \n 3. EXIT"<<endl;
+    cout<<"Enter the options: \n 1. See Next available courses. \n 2. Have a Fixed Course. \n 3. EXIT"<<endl;
     cin>>l;
     if(l==1)
     {
-        cout<<"Next courses available for you: ";
+        cout<<endl<<"Next courses available for you: "<<endl;
         unordered_map<string,bool>bruh=visited_cp;
 
         for(auto&u:mp)
@@ -155,16 +158,16 @@ there:
         }
         while(1)
         {
-            cout<<"Have a fixed course goal? Choose an option:"<<endl;
+            cout<<"\n\nHave a fixed course goal? Choose an option:"<<endl;
             int y;
             cout<<" 1. Least months to complete.\n 2. Least Reg fee to pay.\n";
             cin>>y;
             cout<<"Which Course you wanna do next?"<<endl;
-            cin>>h;
+            cin>>h;cout<<endl<<endl;
             if(visited_cp[h])cout<<"The course is completed"<<endl;
             else
             {
-                if(y==2)
+                if(y==1)
                 {
                     int m=INF;
                     string start;
@@ -190,7 +193,7 @@ there:
                         cout<<endl;
                     }
                 }
-                else if(y==1)
+                else if(y==2)
                 {
 
                     int m=INF;
@@ -219,14 +222,14 @@ there:
                 }
                 else cout<<"INVALID OPTION."<<endl;
             }
-            cout<<"Do you want to continue? (y/n): ";
+            cout<<"\n\nDo you want to continue? (y/n): ";
             char c;
             cin>>c;
             if(c=='n')break;
         }
     }
     int hi;
-    cout<<"Enter an option: 1. Again\n 2. New Student \n 3. EXIT";
+    cout<<"Enter an option:\n 1. Again\n 2. New Student \n 3. EXIT\n\n\n";
     cin>>hi;
     if(hi==1)goto there;
     else if(hi==2)goto here;
