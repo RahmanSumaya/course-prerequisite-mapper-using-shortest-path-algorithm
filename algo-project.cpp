@@ -30,7 +30,7 @@ int main()
             courses.insert(s2);
             cout<<"Enter the number of months the Course will take to complete: ";
             cin>>month;
-            cout<<"Enter the fee the Course: ";
+            cout<<"Enter the fee (in tk) the Course: ";
             cin>>cash;
             mp[s1].push_back({{month,cash},s2});
             visited[s1]=false;
@@ -62,20 +62,35 @@ there:
     {
         cout<<endl<<"Next courses available for you: "<<endl;
         unordered_map<string,bool>bruh=visited_cp;
-
-        for(auto&u:mp)
+        unordered_map<string,vector<pair<int,int>>>temp;
+        bool flag=false;
+        for(auto &u:mp)
         {
             if(visited_cp[u.first]){
             for(auto&[m,v]:u.second)
             {
                 if(!bruh[v])
                 {
-                    cout<<v<<"..... Duration: "<<m.first<<"    Fee: "<<m.second<<endl;
-                    bruh[v]=true;
+                    flag=true;
+                    temp[v].push_back( {m.first,m.second});
                 }
             }}
         }
+        int i=1;
+        for(auto &u:temp)
+        {
+            cout<<i<<". "<< u.first <<endl<<"  The available plans for course are: "<<endl;
+            int j=1;
+            for(auto &m: u.second)
+            {
+                cout<<"  "<<j<<". Duration: "<<m.first<<"  ||  Fee: "<<m.second<<" tk"<<endl;
+                j++;
+            }
+            i++;
+        }
+        if(!flag)cout<<"There are no courses left.";
         cout<<endl;
+
     }
     else if(l==2)
     {
@@ -233,6 +248,6 @@ there:
     cin>>hi;
     if(hi==1)goto there;
     else if(hi==2)goto here;
-    cout<<"THANK YOU!!!";
+    cout<<endl<<endl<<endl<<"                                            THANK YOU!!!";
     return 0;
 }
